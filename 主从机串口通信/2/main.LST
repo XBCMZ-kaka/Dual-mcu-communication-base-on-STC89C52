@@ -1,0 +1,119 @@
+C51 COMPILER V9.00   MAIN                                                                  01/03/2020 14:39:20 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: D:\Keil_v5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          
+   2          /*******Ω” ’ œ‘ æ*********/
+   3          #include <intrins.h>
+   4          
+   5          #include "reg51.h"
+   6          
+   7          #define uchar unsigned char
+   8          #define uint unsigned int
+   9            
+  10          sbit P20=P2^0;
+  11          sbit P21=P2^1;
+  12          
+  13          unsigned char codeswitch;
+  14          uchar code dis_7[] = {
+  15          0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07, 
+  16          0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71, 0x00};
+  17          // 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F, off 
+  18          
+  19          
+  20          
+  21          void delay_ms(unsigned int a)     
+  22          {
+  23   1        unsigned int b;
+  24   1        for(;a>0;a--)
+  25   1          for(b=100;b>0;b--);
+  26   1      }
+  27          
+  28          
+  29          void Uartinit(void)   
+  30          {
+  31   1        PCON &= 0x7F;   //??????
+  32   1        SCON = 0x50;    //8???,?????
+  33   1        TMOD &= 0x0F;   //?????1???
+  34   1        TMOD |= 0x20;   //?????1?8???????
+  35   1        TL1 = 0xFD;   //??????
+  36   1        TH1 = 0xFD;   //????????
+  37   1        ET1 = 0;    //?????1??
+  38   1        TR1 = 1;    //?????1
+  39   1        
+  40   1        ES   = 1;        //?????                  
+  41   1        EA   = 1;        // ???? 
+  42   1        
+  43   1      
+  44   1      }
+  45          
+  46          void SendData(unsigned char a)
+  47          {
+  48   1          SBUF =a;
+  49   1          while(!TI);     
+  50   1          TI = 0;
+  51   1        
+  52   1      }
+  53          
+  54          
+  55          void main()
+C51 COMPILER V9.00   MAIN                                                                  01/03/2020 14:39:20 PAGE 2   
+
+  56          {
+  57   1        unsigned char codeswitch;
+  58   1        unsigned char high=0;
+  59   1        unsigned char low=0;
+  60   1        SCON = 0x50;
+  61   1        TMOD = 0x20;
+  62   1        TH1 = 0xfd;
+  63   1        TL1 = 0xfd;
+  64   1        PCON = 0x00;
+  65   1        RI = 0;
+  66   1        TR1 = 1;
+  67   1          
+  68   1        while(1)
+  69   1        { 
+  70   2          if(RI)
+  71   2          {
+  72   3            RI = 0;
+  73   3            codeswitch=SBUF;
+  74   3            high=((codeswitch&0xf0)>>4);
+  75   3            low=codeswitch&0x0f;  
+  76   3            P0=dis_7[high];
+  77   3            P20=0;
+  78   3            P21=1;
+  79   3          delay_ms(100);
+  80   3            P0=dis_7[low];
+  81   3            P20=1;
+  82   3            P21=0;
+  83   3          delay_ms(1);      
+  84   3          }
+  85   2        }
+  86   1          
+  87   1      }
+  88          
+  89          
+  90          
+  91          
+  92          
+  93          
+  94              
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    139    ----
+   CONSTANT SIZE    =     17    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      1    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

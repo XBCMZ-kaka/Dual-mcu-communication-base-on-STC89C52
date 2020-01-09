@@ -1,0 +1,165 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        01/03/2020  14:21:14  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\KEIL_V5\C51\BIN\BL51.EXE main.obj TO pro
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  pro (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0001H     UNIT         ?DT?MAIN
+            IDATA   0009H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0023H     UNIT         ?PR?MAIN?MAIN
+            CODE    00B2H     001EH     UNIT         ?PR?_DELAY_MS?MAIN
+            CODE    00D0H     001BH     UNIT         ?PR?UARTINIT?MAIN
+            CODE    00EBH     0011H     UNIT         ?CO?MAIN
+            CODE    00FCH     0008H     UNIT         ?PR?_SENDDATA?MAIN
+            CODE    0104H     0008H     UNIT         ?PR?_RECEIVEDATA?MAIN
+            CODE    010CH     0004H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   pro (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN
+  +--> ?PR?_DELAY_MS?MAIN
+  +--> ?PR?_SENDDATA?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  pro (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/03/2020  14:21:14  PAGE 2
+
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  B:00A8H.7       PUBLIC        EA
+  C:00FCH         PUBLIC        _SendData
+  D:0008H         PUBLIC        Rbuf
+  B:00A8H.4       PUBLIC        ES
+  B:0098H.1       PUBLIC        TI
+  C:008FH         PUBLIC        main
+  D:0099H         PUBLIC        SBUF
+  D:0087H         PUBLIC        PCON
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  C:0104H         PUBLIC        _ReceiveData
+  B:00A8H.3       PUBLIC        ET1
+  D:008DH         PUBLIC        TH1
+  D:008BH         PUBLIC        TL1
+  C:00B2H         PUBLIC        _delay_ms
+  C:00D0H         PUBLIC        Uartinit
+  B:0088H.6       PUBLIC        TR1
+  C:00EBH         PUBLIC        dis_7
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        a
+  -------         DO            
+  D:0004H         SYMBOL        b
+  -------         ENDDO         
+  C:00B2H         LINE#         17
+  C:00B2H         LINE#         18
+  C:00B2H         LINE#         20
+  C:00BBH         LINE#         21
+  C:00CFH         LINE#         22
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          UARTINIT
+  C:00D0H         LINE#         25
+  C:00D0H         LINE#         26
+  C:00D0H         LINE#         27
+  C:00D3H         LINE#         28
+  C:00D6H         LINE#         29
+  C:00D9H         LINE#         30
+  C:00DCH         LINE#         31
+  C:00DFH         LINE#         32
+  C:00E2H         LINE#         33
+  C:00E4H         LINE#         34
+  C:00E6H         LINE#         36
+  C:00E8H         LINE#         37
+  C:00EAH         LINE#         40
+  -------         ENDPROC       UARTINIT
+  -------         PROC          _SENDDATA
+  D:0007H         SYMBOL        a
+  C:00FCH         LINE#         42
+  C:00FCH         LINE#         43
+  C:00FCH         LINE#         44
+  C:00FEH         LINE#         45
+  C:0101H         LINE#         46
+  C:0103H         LINE#         48
+  -------         ENDPROC       _SENDDATA
+  -------         PROC          _RECEIVEDATA
+BL51 BANKED LINKER/LOCATER V6.22                                                      01/03/2020  14:21:14  PAGE 3
+
+
+  D:0007H         SYMBOL        a
+  C:0104H         LINE#         49
+  C:0104H         LINE#         50
+  C:0104H         LINE#         51
+  C:0106H         LINE#         52
+  C:0109H         LINE#         53
+  C:010BH         LINE#         54
+  -------         ENDPROC       _RECEIVEDATA
+  -------         PROC          MAIN
+  -------         DO            
+  D:0006H         SYMBOL        codeswitch
+  -------         ENDDO         
+  C:008FH         LINE#         57
+  C:008FH         LINE#         58
+  C:008FH         LINE#         60
+  C:0092H         LINE#         61
+  C:0095H         LINE#         62
+  C:0098H         LINE#         63
+  C:009BH         LINE#         64
+  C:009EH         LINE#         65
+  C:00A0H         LINE#         66
+  C:00A2H         LINE#         68
+  C:00A2H         LINE#         69
+  C:00A2H         LINE#         71
+  C:00A9H         LINE#         72
+  C:00ABH         LINE#         73
+  C:00B0H         LINE#         75
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?UARTINIT?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_RECEIVEDATA?MAIN
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?CO?MAIN
+
+Program Size: data=10.0 xdata=0 code=272
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)
